@@ -4,7 +4,7 @@ import socket
 from flask import Flask
 
 app = Flask(__name__)
-
+__version__ = "v2.0"
 
 @app.route("/ready")
 def ready():
@@ -20,7 +20,8 @@ def ready():
 def hello(name: str = None):
     hostname = socket.gethostname()
     name = f"{name}, " if name else ''
-    return f"{name} Greetings from {hostname}"
+    msg = f"[Host: {hostname}, ApiVersion: {__version__}]"
+    return f"{name} Greetings from {msg}\n"
 
 
 if __name__ == "__main__":
